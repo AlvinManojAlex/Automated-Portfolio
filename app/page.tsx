@@ -3,43 +3,43 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
+interface Project {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+  updated_at: string;
+  topics: string[];
+  language: string | null;
+}
+
+// function to modify the project name and keep it user-friendly to read
+function formatProjectName(name: string): string {
+  return name
+    .split(/[-_]/)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-  const [projects, setProjects] = useState([
-    {
-      id: 1,
-      name: "Project Alpha",
-      description: "A full-stack web application for team collaboration",
-      html_url: "https://github.com/AlvinManojAlex/project-alpha",
-      stargazers_count: 12,
-      updated_at: "2024-03-15",
-      topics: ["react", "nodejs", "postgresql"],
-      language: "JavaScript"
-    },
-    {
-      id: 2,
-      name: "Project Beta",
-      description: "Mobile-first e-commerce platform with real-time analytics",
-      html_url: "https://github.com/AlvinManojAlex/project-beta",
-      stargazers_count: 8,
-      updated_at: "2023-11-20",
-      topics: ["nextjs", "typescript", "tailwind"],
-      language: "TypeScript"
-    },
-    {
-      id: 3,
-      name: "Project Gamma",
-      description: "AI-powered content management system",
-      html_url: "https://github.com/AlvinManojAlex/project-gamma",
-      stargazers_count: 15,
-      updated_at: "2022-08-10",
-      topics: ["python", "fastapi", "openai"],
-      language: "Python"
-    }
-  ]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setMounted(true);
+
+    // Fetch projects from public/projects.json
+    fetch('/projects.json')
+      .then(res => res.json())
+      .then(data => {
+        setProjects(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Error fetching projects: ", error);
+        setLoading(false);
+      });
   }, []);
 
   return (
@@ -117,58 +117,63 @@ export default function Home() {
       <section id="work" className="py-16 md:py-32 px-6 md:px-12 bg-white border-t border-zinc-200">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-xs uppercase tracking-widest text-zinc-400 mb-10 md:mb-16">Selected Work</h2>
-          <div className="space-y-14 md:space-y-24">
-            {projects.map((project, index) => (
-              <div
-                key={project.id || index}
-                className='group cursor-pointer'
-              >
-                <div className='flex items-start justify-between gap-4 mb-4'>
-                  <div className='flex-1'>
-                    <h3 className='text-2xl md:text-4xl font-light text-zinc-900 group-hover:text-zinc-600 transition-colors duration-300 mb-2'>
-                      {project.name}
-                    </h3>
-                    {project.html_url && (
-                      <a
+          
+          {loading ? (
+            <div className="text-center text-zinc-400">Loading projects...</div>
+          ) : projects.length === 0 ? (
+            <div className="text-center text-zinc-400">No projects found</div>
+          ) : (
+            <div className="space-y-14 md:space-y-24">
+              {projects.map((project, index) => (
+                <div 
+                  key={project.id}
+                  className="group cursor-pointer"
+                >
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <div className="flex-1">
+                      <h3 className="text-2xl md:text-4xl font-light text-zinc-900 group-hover:text-zinc-600 transition-colors duration-300 mb-2">
+                        {formatProjectName(project.name)}
+                      </h3>
+                      <a 
                         href={project.html_url}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='text-sm text-zinc-400 hover:text-zinc-600 transition-colors inline-flex items-center gap-1'
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-zinc-400 hover:text-zinc-600 transition-colors inline-flex items-center gap-1"
                       >
-                        View on GitHub
+                        View on GitHub →
                       </a>
-                    )}
-                  </div>
-                  <div className='shrink-0 flex flex-col items-end gap-2'>
-                    {project.updated_at && (
-                      <span className='text-xs text-zinc-400'>
+                    </div>
+                    <div className="shrink-0 flex flex-col items-end gap-2">
+                      <span className="text-xs text-zinc-400">
                         {new Date(project.updated_at).getFullYear()}
                       </span>
-                    )}
+                    </div>
+                  </div>
+                  <p className="text-base md:text-lg text-zinc-600 font-light leading-relaxed mb-6">
+                    {project.description || 'No description provided'}
+                  </p>
+                  <div className="flex flex-wrap gap-2 md:gap-3">
+                    {project.topics && project.topics.length > 0 ? (
+                      project.topics
+                        .filter(topic => topic !== 'featured')
+                        .map((topic, i) => (
+                          <span 
+                            key={i}
+                            className="text-xs uppercase tracking-wider text-zinc-400 px-3 py-1.5 md:px-4 md:py-2 border border-zinc-200 bg-stone-50"
+                          >
+                            {topic}
+                          </span>
+                        ))
+                    ) : project.language ? (
+                      <span className="text-xs uppercase tracking-wider text-zinc-400 px-3 py-1.5 md:px-4 md:py-2 border border-zinc-200 bg-stone-50">
+                        {project.language}
+                      </span>
+                    ) : null}
                   </div>
                 </div>
-                <p className='text-base md:text-lg text-zinc-600 font-light leading-relaxed mb-6'> 
-                  {project.description || "No description provided"}
-                </p>
-                <div className='flex flex-wrap gap-2 md:gap-3'>
-                  {project.topics && project.topics.length > 0 ? (
-                    project.topics.map((topic, i) => (
-                      <span
-                        key={i}
-                        className='text-xs uppercase tracking-wider text-zinc-400 px-3 py-1.5 md:px-4 md:py-2 border border-zinc bg-stone-50'
-                      >
-                        {topic}
-                      </span>
-                    ))
-                  ) : project.language ? (
-                    <span className='text-xs uppercase tracking-wider text-zinc-400 px-3 py-1.5 md:px-4 md:py-2 border border-zinc bg-stone-50'>
-                      {project.language}
-                    </span>
-                  ) : null}
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
