@@ -80,6 +80,7 @@ export default function Home() {
               <a href="#about" className="text-zinc-900 hover:text-zinc-600 transition-colors duration-300">About</a>
               <a href="#work" className="text-zinc-900 hover:text-zinc-600 transition-colors duration-300">Work</a>
               <a href="#skills" className="text-zinc-900 hover:text-zinc-600 transition-colors duration-300">Skills</a>
+              <a href="#experience" className="text-zinc-900 hover:text-zinc-600 transition-colors duration-300">Experience</a>
               <a href="#contact" className="text-zinc-900 hover:text-zinc-600 transition-colors duration-300">Contact</a>
             </div>
           </div>
@@ -212,9 +213,72 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* Experience section */}
+      <section id="experience" className="py-16 md:py-32 px-6 md:px-12 lg:px-16 bg-white border-t border-zinc-200">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-xs uppercase tracking-widest text-zinc-400 mb-10 md:mb-16">Experience</h2>
+          <div className="space-y-14 md:space-y-24">
+                {[
+                  {
+                    company: "MABANEE",
+                    role: "Software Engineer Intern",
+                    period: "Dec 2025 - Jan 2026",
+                    description: [
+                      "Diagnosed and fixed production bugs in an internal workforce attendance system, including resolving ISO year date format causing SQL data inconsistencies.",
+                      "Identified and fixed improper HTTP request types sent to an Oracle Fusion servlet through targeted testing and log analysis, restoring correct backend communication and application functionality."
+                    ]
+                  },
+                  {
+                    company: "Signal Corporation",
+                    role: "Software Engineer Intern",
+                    period: "Jun 2023 - Aug 2023",
+                    description: [
+                      "Developed and enhanced a location-based Named Entity Recognition (NER) system by integrating transfer learning, optimizing model architecture, and extending the existing Stanford NER pipeline to improve accuracy. ",
+                      "Engineered and evaluated multiple ML/NLP models by benchmarking CRF, and state-of-the-art transformer architectures for NER tasks, resulting in a 2% increase in precision and recall."
+                    ]
+                  },
+                  {
+                    company: "IEEE",
+                    role: "Research Intern",
+                    period: "Jun 2023 - Aug 2023",
+                    description: [
+                      "Engineered and enhanced deep learning models for target classification on the MSTAR SAR dataset, fine-tuning ResNet, VGG, and custom CNN architectures.",
+                      "Built end-to-end ML workflows, including dataset preprocessing, feature extraction, model training, hyperparameter tuning, and deployment-ready inference modules using Python, PyTorch, and NumPy."
+                    ]
+                  }
+                ].map((job, index) => (
+                  <div key={index} className="group">
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div className="flex-1">
+                        <h3 className="text-2xl md:text-4xl font-light text-zinc-900 mb-2">
+                          {job.company}
+                        </h3>
+                        <p className="text-base md:text-lg text-zinc-500 font-light">
+                          {job.role}
+                        </p>
+                      </div>
+                      <span className="text-sm text-zinc-400 shrink-0 mt-1 md:mt-2">
+                        {job.period}
+                      </span>
+                    </div>
+                    
+                    <ul className="space-y-3 mb-6">
+                      {job.description.map((point, i) => (
+                        <li key={i} className="text-base md:text-lg text-zinc-600 font-light leading-relaxed flex gap-3">
+                          <span className="text-zinc-400 shrink-0">•</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+        </div>
+      </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 md:py-32 px-6 md:px-12 lg:px-16 bg-white border-t border-zinc-200">
+      <section id="contact" className="py-16 md:py-32 px-6 md:px-12 lg:px-16 border-t border-zinc-200">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-xs uppercase tracking-widest text-zinc-400 mb-10 md:mb-16">Get In Touch</h2>
           <div className="space-y-8 md:space-y-12">
@@ -253,7 +317,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-10 px-6 md:px-12 lg:px-16 border-t border-zinc-200">
+      <footer className="py-10 px-6 md:px-12 lg:px-16 border-t bg-white border-zinc-200">
         <div className="max-w-5xl mx-auto">
           <p className="text-sm text-zinc-400">
             © 2026 Alvin Manoj Alex. All rights reserved.
