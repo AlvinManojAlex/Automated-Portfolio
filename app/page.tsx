@@ -182,32 +182,67 @@ export default function Home() {
       <section id="skills" className="py-16 md:py-32 px-6 md:px-12 lg:px-16 border-t border-zinc-200">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-xs uppercase tracking-widest text-zinc-400 mb-10 md:mb-16">Skills & Technologies</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-10 md:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16">
+            <div>
+              <h3 className="text-xs uppercase tracking-widest text-zinc-400 mb-5 md:mb-8">Languages</h3>
+              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 font-light">
+                <li>Python</li>
+                <li>Java</li>
+                <li>C / C++</li>
+              </ul>
+            </div>
+            
             <div>
               <h3 className="text-xs uppercase tracking-widest text-zinc-400 mb-5 md:mb-8">Frontend</h3>
               <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 font-light">
                 <li>React / Next.js</li>
-                <li>TypeScript</li>
-                <li>Tailwind CSS</li>
-                <li>Three.js</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xs uppercase tracking-widest text-zinc-400 mb-5 md:mb-8">Backend</h3>
-              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 font-light">
+                <li>React Native</li>
                 <li>Node.js</li>
-                <li>Python</li>
-                <li>PostgreSQL</li>
-                <li>REST APIs</li>
               </ul>
             </div>
+            
             <div>
-              <h3 className="text-xs uppercase tracking-widest text-zinc-400 mb-5 md:mb-8">Tools</h3>
+              <h3 className="text-xs uppercase tracking-widest text-zinc-400 mb-5 md:mb-8">Backend & Data</h3>
+              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 font-light">
+                <li>REST APIs</li>
+                <li>Data Pipelines</li>
+                <li>Apache Spark</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-xs uppercase tracking-widest text-zinc-400 mb-5 md:mb-8">Databases</h3>
+              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 font-light">
+                <li>MySQL</li>
+                <li>MongoDB</li>
+                <li>Data Management</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-xs uppercase tracking-widest text-zinc-400 mb-5 md:mb-8">AI & ML</h3>
+              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 font-light">
+                <li>Machine Learning</li>
+                <li>Deep Learning</li>
+                <li>PyTorch</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-xs uppercase tracking-widest text-zinc-400 mb-5 md:mb-8">DevOps & Tools</h3>
               <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 font-light">
                 <li>Git / GitHub</li>
                 <li>Docker</li>
                 <li>AWS</li>
-                <li>Figma</li>
+              </ul>
+            </div>
+            
+            <div className="md:col-span-2 lg:col-span-1">
+              <h3 className="text-xs uppercase tracking-widest text-zinc-400 mb-5 md:mb-8">Methodologies</h3>
+              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 font-light">
+                <li>OOP & Design Patterns</li>
+                <li>Agile / Scrum</li>
+                <li>A/B Testing</li>
               </ul>
             </div>
           </div>
