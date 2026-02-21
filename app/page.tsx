@@ -99,8 +99,8 @@ export default function Home() {
               <p className="text-base md:text-xl text-zinc-900 font-light leading-relaxed mb-6">
                 I’m a software developer focused on building secure, reliable, and scalable applications. I enjoy understanding how systems work end-to-end, from architecture to user experience, and applying that perspective to create thoughtful, user-centered solutions.
               </p>
-              <p className="text-base md:text-xl text-zinc-600 font-light leading-relaxed">
-                Currently, I work across the full stack with modern web technologies, continuously learning, experimenting with new tools, and building AI/ML-driven solutions that solve meaningful problems. I’m driven by curiosity, craftsmanship, and a desire to contribute to technology through impactful code and collaboration.
+              <p className="text-base md:text-xl text-zinc-900 font-light leading-relaxed">
+                Currently, I work across the full stack with modern web technologies, continuously learning and experimenting with new tools that solve meaningful problems. I’m driven by curiosity and a desire to contribute to technology through impactful code and collaboration.
               </p>
             </div>
             <div className="flex flex-row md:flex-col gap-8 md:space-y-8">
