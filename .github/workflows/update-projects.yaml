@@ -7,11 +7,6 @@ on:
   
   # Allowing manual triggers
   workflow_dispatch:
-  
-  # Triggered when pushed to main
-  push:
-    branches:
-      - main
 
 permissions:
   contents: write
