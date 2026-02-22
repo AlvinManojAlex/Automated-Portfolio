@@ -8,7 +8,7 @@ interface Project {
   name: string;
   description: string | null;
   html_url: string;
-  updated_at: string;
+  created_at: string;
   topics: string[];
   language: string | null;
 }
@@ -146,7 +146,7 @@ export default function Home() {
                     </div>
                     <div className="shrink-0 flex flex-col items-end gap-2">
                       <span className="text-xs text-zinc-400">
-                        {new Date(project.updated_at).getFullYear()}
+                        {new Date(project.created_at).getFullYear()}
                       </span>
                     </div>
                   </div>
