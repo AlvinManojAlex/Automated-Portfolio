@@ -31,7 +31,7 @@ jobs:
         # Fetch your public repositories using the GitHub API
         curl -H "Authorization: token $GITHUB_TOKEN" \
              -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/users/AlvinManojAlex/repos?sort=updated&per_page=100" \
+            "https://api.github.com/users/AlvinManojAlex/repos?sort=created&direction=desc&per_page=100" \
             > repos.json
 
         # Filter for repos with 'featured' topic only
