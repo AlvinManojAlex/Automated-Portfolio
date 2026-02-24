@@ -21,7 +21,7 @@ jobs:
     
     - name: Fetch GitHub repositories
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
         # Fetch your public repositories using the GitHub API
         curl -H "Authorization: token $GITHUB_TOKEN" \
