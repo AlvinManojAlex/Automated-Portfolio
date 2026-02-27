@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1159631653,
+    "name": "colab-code-editor",
+    "description": "A scalable, real-time collaborative coding platform that enables multiple users to work simultaneously within a shared development environment. The system leverages cloud-native architecture and is built using services from AWS to ensure reliability, scalability, and performance.",
+    "html_url": "https://github.com/AlvinManojAlex/colab-code-editor",
+    "created_at": "2026-02-17T00:46:03Z",
+    "topics": [
+      "aws",
+      "docker",
+      "featured",
+      "python"
+    ],
+    "language": null
+  },
+  {
+    "id": 1126128753,
+    "name": "ICSK_Student_Shuffler",
+    "description": "A GUI-based application that enables teachers to automate the student class assignment process. The system imports student data from Excel spreadsheets and distributes students into separate classes using a randomized algorithm that maintains uniformity across class characteristics.",
+    "html_url": "https://github.com/AlvinManojAlex/ICSK_Student_Shuffler",
+    "created_at": "2026-01-01T07:14:00Z",
+    "topics": [
+      "featured",
+      "python3",
+      "tkinter"
+    ],
+    "language": "Python"
+  },
+  {
+    "id": 1104088089,
+    "name": "Runtime_SBOM_Generator",
+    "description": "A script that generates SBOM for a project that will capture dynamically invoked libraries using Linux strace calls.",
+    "html_url": "https://github.com/AlvinManojAlex/Runtime_SBOM_Generator",
+    "created_at": "2025-11-25T18:28:45Z",
+    "topics": [
+      "featured",
+      "linux",
+      "python3",
+      "sbom",
+      "strace"
+    ],
+    "language": "Python"
+  },
+  {
+    "id": 929513956,
+    "name": "Swiper-No-Swiping",
+    "description": "A chrome extension that can be used for identifying PIIs (Personally Identifiable Information) in sensitive documents before uploading onto an AI platform",
+    "html_url": "https://github.com/AlvinManojAlex/Swiper-No-Swiping",
+    "created_at": "2025-02-08T18:10:42Z",
+    "topics": [
+      "css",
+      "featured",
+      "html",
+      "javascript",
+      "manifest-v3"
+    ],
+    "language": "JavaScript"
+  }
+]
