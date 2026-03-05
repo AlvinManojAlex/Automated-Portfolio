@@ -2,59 +2,49 @@ name: Update Projects from GitHub
 
 on:
   schedule:
-  # Run every hour for a change
     - cron: '0 * * * *'
-  
-  # Allowing manual triggers
   workflow_dispatch:
 
 permissions:
   contents: write
-  
+
 jobs:
   update-projects:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    
-    - name: Fetch GitHub repositories
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-      run: |
-        # Fetch your public repositories using the GitHub API
-        curl -H "Authorization: token $GITHUB_TOKEN" \
-             -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/users/AlvinManojAlex/repos?sort=created&direction=desc&per_page=100" \
-            > repos.json
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-        # Filter for repos with 'featured' topic only
-        cat repos.json | jq '[.[] | {
-          id: .id,
-          name: .name,
-          description: .description,
-          html_url: .html_url,
-          created_at: .created_at,
-          topics: .topics,
-          language: .language
-        } | select(.topics | index("featured"))]' > public/projects.json
+      - name: Fetch GitHub repositories
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          curl -H "Authorization: token $GITHUB_TOKEN" \
+               -H "Accept: application/vnd.github.v3+json" \
+               "https://api.github.com/users/AlvinManojAlex/repos?sort=created&direction=desc&per_page=100" \
+               > repos.json
 
-    - name: Commit and push if changed
-      run: |
-        # "git diff --staged --quiet" returns status code 1 if there are staged changes
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add public/projects.json
-        git diff --staged --quiet || (git commit -m "Updated projects data" && git push)
+          jq '[.[] | {
+            id: .id,
+            name: .name,
+            description: .description,
+            html_url: .html_url,
+            created_at: .created_at,
+            topics: .topics,
+            language: .language
+          } | select(.topics | index("featured"))]' repos.json > public/projects.json
 
-    - name: Trigger deploy workflow
-      if: steps.commit.outputs.changed == 'true'
-      run: |
-        curl -L \
-          -X POST \
-          -H "Accept: application/vnd.github+json" \
-          -H "Authorization: Bearer ${{ secrets.PAT_TOKEN }}" \
-          -H "X-GitHub-Api-Version: 2022-11-28" \
-          https://api.github.com/repos/${{ github.repository }}/actions/workflows/deploy.yml/dispatches \
-          -d '{"ref":"main"}'
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add public/projects.json
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Updated projects data"
+            git push
+          fi
