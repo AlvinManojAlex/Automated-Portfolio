@@ -1,5 +1,19 @@
 [
   {
+    "id": 1207527970,
+    "name": "spark-hack-CompassNYC",
+    "description": "Privacy-first, fully local AI for navigating NYC social services. Runs Qwen 2.5 7B on-device (Acer GN100) with a hybrid RAG pipeline (policy embeddings + NYC Open Data) to determine eligibility for SNAP, Medicaid, and HRA Cash Assistance, providing benefit estimates, documentation requirements, and next steps with zero cloud dependency.",
+    "html_url": "https://github.com/AlvinManojAlex/spark-hack-CompassNYC",
+    "created_at": "2026-04-11T03:46:26Z",
+    "topics": [
+      "featured",
+      "llm",
+      "qwen2-5",
+      "rag"
+    ],
+    "language": "Python"
+  },
+  {
     "id": 1159631653,
     "name": "colab-code-editor",
     "description": "A scalable, real-time collaborative coding platform that enables multiple users to work simultaneously within a shared development environment. The system leverages cloud-native architecture and is built using services from AWS to ensure reliability, scalability, and performance.",
