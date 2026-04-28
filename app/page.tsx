@@ -25,6 +25,7 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [expanded, setExpanded] = useState<Record<number, boolean>>({});
   
   useEffect(() => {
     setMounted(true);
@@ -150,9 +151,24 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <p className="text-base md:text-lg text-zinc-600 font-light leading-relaxed mb-6">
+                  <p className={`text-base md:text-lg text-zinc-600 font-light leading-relaxed ${
+                      expanded[index] ? '' : 'line-clamp-5'
+                  }`}>
                     {project.description || 'No description provided'}
                   </p>
+                  {project.description && project.description.length > 120 && (
+                    <button
+                      onClick = {() =>
+                        setExpanded(prev => ({
+                          ...prev,
+                          [index]: !prev[index]
+                        }))
+                      }
+                      className="mt-2 mb-6 text-sm text-zinc-400 hover:text-zinc-600 transition-colors"
+                    >
+                      {expanded[index] ? "View less" : "View more"}
+                    </button>
+                  )}
                   <div className="flex flex-wrap gap-2 md:gap-3">
                     {project.topics && project.topics.length > 0 ? (
                       project.topics
