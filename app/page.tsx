@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 
 interface Project {
@@ -25,7 +25,11 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  
+  // useState variables for checking overflow of project description
   const [expanded, setExpanded] = useState<Record<number, boolean>>({});
+  const [isOverflowing, setIsOverflowing] = useState<Record<number, boolean>>({});
+  const descRefs = useRef<Record<number, HTMLParagraphElement | null>>({});
   
   useEffect(() => {
     setMounted(true);
@@ -42,6 +46,31 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    const newOverflow: Record<number, boolean> = {};
+
+    Object.keys(descRefs.current).forEach((key) => {
+      const el = descRefs.current[Number(key)];
+
+      if (el) {
+        // temporarily force clamp ON for measurement
+        const wasExpanded = expanded[Number(key)];
+
+        if (wasExpanded) {
+          el.classList.add('line-clamp-5');
+        }
+
+        newOverflow[Number(key)] = el.scrollHeight > el.clientHeight;
+
+        if (wasExpanded) {
+          el.classList.remove('line-clamp-5');
+        }
+      }
+    });
+
+    setIsOverflowing(newOverflow);
+  }, [projects]);
 
   return (
     <div className="min-h-screen bg-stone-50">
@@ -151,12 +180,15 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <p className={`text-base md:text-lg text-zinc-600 font-light leading-relaxed ${
+                  <p
+                    ref={(el) => (descRefs.current[index] = el)}
+                    className={`text-base md:text-lg text-zinc-600 font-light leading-relaxed ${
                       expanded[index] ? '' : 'line-clamp-5'
-                  }`}>
+                    }`}
+                  >
                     {project.description || 'No description provided'}
                   </p>
-                  {project.description && project.description.length > 120 && (
+                  {project.description && isOverflowing[index] && (
                     <button
                       onClick = {() =>
                         setExpanded(prev => ({
@@ -169,7 +201,7 @@ export default function Home() {
                       {expanded[index] ? "View less" : "View more"}
                     </button>
                   )}
-                  <div className="flex flex-wrap gap-2 md:gap-3">
+                  <div className="flex flex-wrap gap-2 md:gap-3 md:mt-2">
                     {project.topics && project.topics.length > 0 ? (
                       project.topics
                         .filter(topic => topic !== 'featured')
