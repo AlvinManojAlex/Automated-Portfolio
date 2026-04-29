@@ -58,7 +58,7 @@
   {
     "id": 929513956,
     "name": "Swiper-No-Swiping",
-    "description": "A chrome extension that can be used for identifying PIIs (Personally Identifiable Information) in sensitive documents before uploading onto an AI platform",
+    "description": "A chrome extension that can be used for identifying PIIs (Personally Identifiable Information) in sensitive documents before uploading onto an AI platform.",
     "html_url": "https://github.com/AlvinManojAlex/Swiper-No-Swiping",
     "created_at": "2025-02-08T18:10:42Z",
     "topics": [
