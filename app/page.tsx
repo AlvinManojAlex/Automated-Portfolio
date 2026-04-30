@@ -181,7 +181,9 @@ export default function Home() {
                     </div>
                   </div>
                   <p
-                    ref={(el) => (descRefs.current[index] = el)}
+                    ref={(el) => {
+                      descRefs.current[index] = el;
+                    }}
                     className={`text-base md:text-lg text-zinc-600 font-light leading-relaxed ${
                       expanded[index] ? '' : 'line-clamp-5'
                     }`}
