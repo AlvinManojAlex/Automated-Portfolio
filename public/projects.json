@@ -1,5 +1,18 @@
 [
   {
+    "id": 1323523940,
+    "name": "Build-with-DataHub-Hackathon",
+    "description": "This is a DataHub-native guardian for production ML systems. Connects to a DataHub instance and runs five checks against its ML lineage graph, surfacing at-risk models before they cause an incident.",
+    "html_url": "https://github.com/AlvinManojAlex/Build-with-DataHub-Hackathon",
+    "created_at": "2026-08-05T01:42:38Z",
+    "topics": [
+      "datahub",
+      "fastapi",
+      "python"
+    ],
+    "language": "Python"
+  },
+  {
     "id": 1299958345,
     "name": "Leet-Pulse",
     "description": "A Chrome extension that quietly tracks LeetCode activity for a custom watchlist of usernames. Add any LeetCode profile, and the extension polls hourly in the background, surfacing a simple activity feed.",
