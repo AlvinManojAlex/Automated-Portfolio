@@ -636,6 +636,18 @@ export default function Home() {
           <div className="space-y-14 md:space-y-24">
                 {[
                   {
+                    company: "FinDi Ltd.",
+                    role: "Software Engineer",
+                    period: "Jul 2026 - Present",
+                    description: [
+                      "Built and configured Firebase cloud infrastructure to support QA testing and development workflows, providing a dedicated environment for application validation.",
+                      "Developed a backend feature integrating the Plaid API to retrieve up to two years of user transaction history, calculate historical averages and baseline metrics, and persist results in Firestore for frontend consumption.",
+                      "Diagnosed and fixed a backend issue causing timeouts during Plaid API user-data extraction, improving reliability of a critical external API integration.",
+                      "Redesigned and repaired a failing CI/CD deployment pipeline responsible for automatically deploying backend functions to Firebase, restoring reliable automated deployments.",
+                      "Investigated and resolved a backend logging failure caused by cyclic logger calls, eliminating recursive stack overflows and restoring application logging functionality."
+                    ]
+                  },
+                  {
                     company: "MABANEE",
                     role: "Software Engineer Intern",
                     period: "Dec 2025 - Jan 2026",
