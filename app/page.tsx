@@ -45,9 +45,9 @@ function getExperienceLabel(): string {
 // sections linked from both the hero row and the sticky navbar
 const NAV_LINKS = [
   { id: 'about', label: 'About' },
-  { id: 'work', label: 'Work' },
-  { id: 'skills', label: 'Skills' },
   { id: 'experience', label: 'Experience' },
+  { id: 'work', label: 'Projects' },
+  { id: 'skills', label: 'Skills' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -404,6 +404,80 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Experience section */}
+      <section id="experience" hidden={activeSection !== 'experience'} className="section-panel py-16 md:py-32 px-6 md:px-12 lg:px-16 bg-white dark:bg-zinc-900">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-10 md:mb-16">Experience</h2>
+          <div className="space-y-14 md:space-y-24">
+                {[
+                  {
+                    company: "FinDi Ltd.",
+                    role: "Software Engineer",
+                    period: "Jul 2026 - Present",
+                    description: [
+                      "Built and configured Firebase cloud infrastructure to support QA testing and development workflows, providing a dedicated environment for application validation.",
+                      "Developed a backend feature integrating the Plaid API to retrieve up to two years of user transaction history, calculate historical averages and baseline metrics, and persist results in Firestore for frontend consumption.",
+                      "Diagnosed and fixed a backend issue causing timeouts during Plaid API user-data extraction, improving reliability of a critical external API integration.",
+                      "Investigated and resolved a backend logging failure caused by cyclic logger calls, eliminating recursive stack overflows and restoring application logging functionality."
+                    ]
+                  },
+                  {
+                    company: "MABANEE",
+                    role: "Software Engineer Intern",
+                    period: "Dec 2025 - Jan 2026",
+                    description: [
+                      "Diagnosed and fixed production bugs in an internal workforce attendance system, including resolving ISO year date format causing SQL data inconsistencies.",
+                      "Identified and fixed improper HTTP request types sent to an Oracle Fusion servlet through targeted testing and log analysis, restoring correct backend communication and application functionality."
+                    ]
+                  },
+                  {
+                    company: "Signal Corporation",
+                    role: "Software Engineer Intern",
+                    period: "Jun 2023 - Aug 2023",
+                    description: [
+                      "Developed and enhanced a location-based Named Entity Recognition (NER) system by integrating transfer learning, optimizing model architecture, and extending the existing Stanford NER pipeline to improve accuracy. ",
+                      "Engineered and evaluated multiple ML/NLP models by benchmarking CRF, and state-of-the-art transformer architectures for NER tasks, resulting in a 2% increase in precision and recall."
+                    ]
+                  },
+                  {
+                    company: "IEEE",
+                    role: "Research Intern",
+                    period: "Jun 2023 - Aug 2023",
+                    description: [
+                      "Engineered and enhanced deep learning models for target classification on the MSTAR SAR dataset, fine-tuning ResNet, VGG, and custom CNN architectures.",
+                      "Built end-to-end ML workflows, including dataset preprocessing, feature extraction, model training, hyperparameter tuning, and deployment-ready inference modules using Python, PyTorch, and NumPy."
+                    ]
+                  }
+                ].map((job, index) => (
+                  <div key={index} className="group">
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div className="flex-1">
+                        <h3 className="text-2xl md:text-4xl font-light text-zinc-900 dark:text-zinc-50 mb-2">
+                          {job.company}
+                        </h3>
+                        <p className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 font-light">
+                          {job.role}
+                        </p>
+                      </div>
+                      <span className="text-sm text-zinc-400 dark:text-zinc-500 shrink-0 mt-1 md:mt-2">
+                        {job.period}
+                      </span>
+                    </div>
+
+                    <ul className="space-y-3 mb-6">
+                      {job.description.map((point, i) => (
+                        <li key={i} className="text-base md:text-lg text-zinc-600 dark:text-zinc-400 font-light leading-relaxed flex gap-3">
+                          <span className="text-zinc-400 dark:text-zinc-500 shrink-0">•</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+        </div>
+      </section>
+
       {/* Projects Section */}
       <section id="work" hidden={activeSection !== 'work'} className="section-panel py-16 md:py-32 px-6 md:px-12 bg-white dark:bg-zinc-900">
         <div className="max-w-5xl mx-auto">
@@ -644,81 +718,6 @@ export default function Home() {
               </ul>
             </div>
           </div>
-        </div>
-      </section>
-      
-      {/* Experience section */}
-      <section id="experience" hidden={activeSection !== 'experience'} className="section-panel py-16 md:py-32 px-6 md:px-12 lg:px-16 bg-white dark:bg-zinc-900">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-10 md:mb-16">Experience</h2>
-          <div className="space-y-14 md:space-y-24">
-                {[
-                  {
-                    company: "FinDi Ltd.",
-                    role: "Software Engineer",
-                    period: "Jul 2026 - Present",
-                    description: [
-                      "Built and configured Firebase cloud infrastructure to support QA testing and development workflows, providing a dedicated environment for application validation.",
-                      "Developed a backend feature integrating the Plaid API to retrieve up to two years of user transaction history, calculate historical averages and baseline metrics, and persist results in Firestore for frontend consumption.",
-                      "Diagnosed and fixed a backend issue causing timeouts during Plaid API user-data extraction, improving reliability of a critical external API integration.",
-                      "Redesigned and repaired a failing CI/CD deployment pipeline responsible for automatically deploying backend functions to Firebase, restoring reliable automated deployments.",
-                      "Investigated and resolved a backend logging failure caused by cyclic logger calls, eliminating recursive stack overflows and restoring application logging functionality."
-                    ]
-                  },
-                  {
-                    company: "MABANEE",
-                    role: "Software Engineer Intern",
-                    period: "Dec 2025 - Jan 2026",
-                    description: [
-                      "Diagnosed and fixed production bugs in an internal workforce attendance system, including resolving ISO year date format causing SQL data inconsistencies.",
-                      "Identified and fixed improper HTTP request types sent to an Oracle Fusion servlet through targeted testing and log analysis, restoring correct backend communication and application functionality."
-                    ]
-                  },
-                  {
-                    company: "Signal Corporation",
-                    role: "Software Engineer Intern",
-                    period: "Jun 2023 - Aug 2023",
-                    description: [
-                      "Developed and enhanced a location-based Named Entity Recognition (NER) system by integrating transfer learning, optimizing model architecture, and extending the existing Stanford NER pipeline to improve accuracy. ",
-                      "Engineered and evaluated multiple ML/NLP models by benchmarking CRF, and state-of-the-art transformer architectures for NER tasks, resulting in a 2% increase in precision and recall."
-                    ]
-                  },
-                  {
-                    company: "IEEE",
-                    role: "Research Intern",
-                    period: "Jun 2023 - Aug 2023",
-                    description: [
-                      "Engineered and enhanced deep learning models for target classification on the MSTAR SAR dataset, fine-tuning ResNet, VGG, and custom CNN architectures.",
-                      "Built end-to-end ML workflows, including dataset preprocessing, feature extraction, model training, hyperparameter tuning, and deployment-ready inference modules using Python, PyTorch, and NumPy."
-                    ]
-                  }
-                ].map((job, index) => (
-                  <div key={index} className="group">
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <div className="flex-1">
-                        <h3 className="text-2xl md:text-4xl font-light text-zinc-900 dark:text-zinc-50 mb-2">
-                          {job.company}
-                        </h3>
-                        <p className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 font-light">
-                          {job.role}
-                        </p>
-                      </div>
-                      <span className="text-sm text-zinc-400 dark:text-zinc-500 shrink-0 mt-1 md:mt-2">
-                        {job.period}
-                      </span>
-                    </div>
-                    
-                    <ul className="space-y-3 mb-6">
-                      {job.description.map((point, i) => (
-                        <li key={i} className="text-base md:text-lg text-zinc-600 dark:text-zinc-400 font-light leading-relaxed flex gap-3">
-                          <span className="text-zinc-400 dark:text-zinc-500 shrink-0">•</span>
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
         </div>
       </section>
 
