@@ -24,6 +24,24 @@ function formatProjectName(name: string): string {
 // topics used by fewer than this many projects are hidden by default in the dropdown
 const TOPIC_VISIBILITY_THRESHOLD = 2;
 
+// months of experience before full-time work started, plus the full-time start date
+const PRIOR_EXPERIENCE_MONTHS = 8;
+const FULL_TIME_START = new Date(2026, 6, 1); // July 2026
+
+function getExperienceLabel(): string {
+  const now = new Date();
+  const monthsElapsed =
+    (now.getFullYear() - FULL_TIME_START.getFullYear()) * 12 +
+    (now.getMonth() - FULL_TIME_START.getMonth());
+  const totalMonths = PRIOR_EXPERIENCE_MONTHS + monthsElapsed;
+
+  if (totalMonths >= 12) {
+    const years = Math.floor(totalMonths / 12);
+    return `${years} year${years > 1 ? 's' : ''}`;
+  }
+  return `${totalMonths} month${totalMonths !== 1 ? 's' : ''}`;
+}
+
 // sections linked from both the hero row and the sticky navbar
 const NAV_LINKS = [
   { id: 'about', label: 'About' },
@@ -379,7 +397,7 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-2 md:mb-3 pt-8 md:pt-0">Experience</h3>
-                <p className="text-base md:text-lg text-zinc-900 dark:text-zinc-100">1 year</p>
+                <p className="text-base md:text-lg text-zinc-900 dark:text-zinc-100">{getExperienceLabel()}</p>
               </div>
             </div>
           </div>
