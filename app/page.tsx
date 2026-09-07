@@ -655,68 +655,42 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <h2 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-10 md:mb-16">Skills & Technologies</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16">
-            <div>
-              <h3 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-5 md:mb-8">Languages</h3>
-              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 dark:text-zinc-100 font-light">
-                <li>Python</li>
-                <li>Java</li>
-                <li>C / C++</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-5 md:mb-8">Frontend</h3>
-              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 dark:text-zinc-100 font-light">
-                <li>React / Next.js</li>
-                <li>React Native</li>
-                <li>Node.js</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-5 md:mb-8">Backend & Data</h3>
-              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 dark:text-zinc-100 font-light">
-                <li>REST APIs</li>
-                <li>Data Pipelines</li>
-                <li>Apache Spark</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-5 md:mb-8">Databases</h3>
-              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 dark:text-zinc-100 font-light">
-                <li>MySQL</li>
-                <li>MongoDB</li>
-                <li>Data Management</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-5 md:mb-8">AI & ML</h3>
-              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 dark:text-zinc-100 font-light">
-                <li>Machine Learning</li>
-                <li>Deep Learning</li>
-                <li>PyTorch</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-5 md:mb-8">DevOps & Tools</h3>
-              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 dark:text-zinc-100 font-light">
-                <li>Git / GitHub</li>
-                <li>Docker</li>
-                <li>AWS</li>
-              </ul>
-            </div>
-
-            <div className="md:col-span-2 lg:col-span-1">
-              <h3 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-5 md:mb-8">Methodologies</h3>
-              <ul className="space-y-3 md:space-y-4 text-base text-zinc-900 dark:text-zinc-100 font-light">
-                <li>OOP & Design Patterns</li>
-                <li>Agile / Scrum</li>
-                <li>A/B Testing</li>
-              </ul>
-            </div>
+            {[
+              {
+                category: 'Languages & Frameworks',
+                skills: ['JavaScript', 'TypeScript', 'React', 'Python', 'C++'],
+              },
+              {
+                category: 'Backend & Data',
+                skills: ['FastAPI', 'PostgreSQL', 'MongoDB'],
+              },
+              {
+                category: 'Cloud & DevOps',
+                skills: ['AWS', 'Docker', 'Kubernetes', 'Firebase', 'CI/CD Pipelines'],
+              },
+              {
+                category: 'Security',
+                skills: ['OWASP Security', 'Burp Suite'],
+              },
+              {
+                category: 'AI & Automation',
+                skills: ['AI', 'Agent', 'LLM'],
+              },
+            ].map(({ category, skills }) => (
+              <div key={category}>
+                <h3 className="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-5 md:mb-8">{category}</h3>
+                <div className="flex flex-wrap gap-2 md:gap-3">
+                  {skills.map(skill => (
+                    <span
+                      key={skill}
+                      className="text-sm md:text-base text-zinc-900 dark:text-zinc-100 font-light px-2 py-0.5 md:px-2.5 md:py-1 rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-stone-50 dark:bg-zinc-800"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
